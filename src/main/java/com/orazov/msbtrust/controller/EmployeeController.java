@@ -1,11 +1,13 @@
 package com.orazov.msbtrust.controller;
 
 import com.orazov.msbtrust.entity.Employee;
+import com.orazov.msbtrust.entity.MyUser;
 import com.orazov.msbtrust.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,12 +20,14 @@ public class EmployeeController {
    private final EmployeeService employeeService;
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<List<Employee>> getAllEmployees(){
         List<Employee> employees = employeeService.findAllEmployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable ("id") Long id){
         Employee employee = employeeService.findEmployeeById(id);
         return new ResponseEntity<>(employee, HttpStatus.OK);
@@ -51,5 +55,11 @@ public class EmployeeController {
     public ResponseEntity<?> assignEmployeeToProject(@PathVariable Long employeeId, @PathVariable Long projectId) {
         employeeService.assignEmployeeToProject(employeeId, projectId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/new-user")
+    public String addUser(@RequestBody MyUser user){
+        employeeService.addUser(user);
+        return "User is saved";
     }
 }
