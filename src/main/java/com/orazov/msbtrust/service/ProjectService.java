@@ -39,8 +39,8 @@ public class ProjectService {
         projectRepository.deleteById(id);
     }
 
-    public void addUser(MyUser user){
-        userRepository.save(user);
-    }
+//    public void addUser(MyUser user){
+//        userRepository.save(user);
+//    }
 
 }

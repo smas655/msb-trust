@@ -15,9 +15,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/employees")
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class EmployeeController {
 
-   private final EmployeeService employeeService;
+   private EmployeeService employeeService;
 
     @GetMapping("/all")
     @PreAuthorize("hasAuthority('ROLE_USER')")
