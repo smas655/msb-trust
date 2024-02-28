@@ -15,13 +15,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/employees")
 @RequiredArgsConstructor
-@AllArgsConstructor
 public class EmployeeController {
 
-   private EmployeeService employeeService;
+   private final EmployeeService employeeService;
 
     @GetMapping("/all")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_USER' && 'ROLE_ADMIN')")
     public ResponseEntity<List<Employee>> getAllEmployees(){
         List<Employee> employees = employeeService.findAllEmployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);

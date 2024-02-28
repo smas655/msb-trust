@@ -6,6 +6,7 @@ import com.orazov.msbtrust.entity.Project;
 import com.orazov.msbtrust.repository.EmployeeRepository;
 import com.orazov.msbtrust.repository.ProjectRepository;
 import com.orazov.msbtrust.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Transactional
 public class EmployeeService {
 
@@ -56,7 +57,7 @@ public class EmployeeService {
         projectRepository.save(project);
     }
 
-    public void addUser(MyUser user){
+    public void addUser(MyUser user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }

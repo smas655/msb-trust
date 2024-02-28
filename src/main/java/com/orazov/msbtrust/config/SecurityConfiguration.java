@@ -19,12 +19,12 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
 @Configuration
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @EnableMethodSecurity
 public class SecurityConfiguration {
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         return new MyUserDetailsService();
     }
 
@@ -33,16 +33,16 @@ public class SecurityConfiguration {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request ->
-                        request.requestMatchers("/api/v1/employees/all", "/api/v1/projects/all", "/api/v1/employees/new-user")
+                        request.requestMatchers("api/v1/employees/all", "api/v1/projects/all", "api/v1/employees/new-user")
                 .permitAll()
-                                .requestMatchers("/api/v1/projects/**", "/api/v1/employees/**").authenticated())
+                    .requestMatchers("api/v1/projects/**", "api/v1/employees/**").authenticated())
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                //.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider(){
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService());
         provider.setPasswordEncoder(passwordEncoder());
