@@ -1,13 +1,10 @@
 package com.orazov.msbtrust.service;
 
-import com.orazov.msbtrust.entity.Employee;
-import com.orazov.msbtrust.entity.MyUser;
 import com.orazov.msbtrust.entity.Project;
 import com.orazov.msbtrust.repository.EmployeeRepository;
 import com.orazov.msbtrust.repository.ProjectRepository;
-import com.orazov.msbtrust.repository.UserRepository;
+import com.orazov.msbtrust.repository.MyUserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +18,7 @@ public class ProjectService {
 
     private final ProjectRepository projectRepository;
     private final EmployeeRepository employeeRepository;
-    private final UserRepository userRepository;
+    private final MyUserRepository userRepository;
 
     public List<Project> findAllProjects() {
         return projectRepository.findAll();

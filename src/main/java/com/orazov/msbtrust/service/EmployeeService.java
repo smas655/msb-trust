@@ -5,9 +5,8 @@ import com.orazov.msbtrust.entity.MyUser;
 import com.orazov.msbtrust.entity.Project;
 import com.orazov.msbtrust.repository.EmployeeRepository;
 import com.orazov.msbtrust.repository.ProjectRepository;
-import com.orazov.msbtrust.repository.UserRepository;
+import com.orazov.msbtrust.repository.MyUserRepository;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,7 @@ public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
     private final ProjectRepository projectRepository;
-    private final UserRepository userRepository;
+    private final MyUserRepository myUserRepository;
     private final PasswordEncoder passwordEncoder;
 
     public List<Employee> findAllEmployees(){
@@ -59,6 +58,6 @@ public class EmployeeService {
 
     public void addUser(MyUser user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        myUserRepository.save(user);
     }
 }
