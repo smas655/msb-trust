@@ -24,7 +24,7 @@ public class JwtTokenUtils {
     @Value("${jwt.lifetime}")
     private Duration jwtLifeTime;
 
-    // method generateToken Когда пришлют логин и пароль, проверим, сформируем токен и возвращаем токен клиенту
+    // method generateToken Когда придет логин и пароль, проверим, сформируем токен и возвращаем токен клиенту
     public String generateToken(UserDetails userDetails){
         Map<String, Object> claims = new HashMap<>();
         List<String> rolesList = userDetails.getAuthorities().stream()
@@ -55,7 +55,7 @@ public class JwtTokenUtils {
             return extractAllClaims(token).get("roles", List.class);
         }
 
-    // method getAllClaimsFromToken - этот метод позволяет нам передать токен и получить Claims(Имя, роли и тд), но это общий метод
+    // method extractAllClaims - этот метод позволяет нам передать токен и получить Claims(Имя, роли и тд), но это общий метод
     private Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()

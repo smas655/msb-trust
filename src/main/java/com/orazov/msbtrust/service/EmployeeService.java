@@ -21,8 +21,6 @@ public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
     private final ProjectRepository projectRepository;
-    private final MyUserRepository myUserRepository;
-    private final PasswordEncoder passwordEncoder;
 
     public List<Employee> findAllEmployees(){
         return employeeRepository.findAll();
@@ -54,10 +52,5 @@ public class EmployeeService {
 
         project.getEmployees().add(employee);
         projectRepository.save(project);
-    }
-
-    public void addUser(MyUser user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        myUserRepository.save(user);
     }
 }
