@@ -1,12 +1,9 @@
-# DB Connection
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/msbtrust
-    username: postgres
-    password: 1234
-
-  # JPA-ORM Properties
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     show-sql: true
     hibernate:
@@ -16,7 +13,6 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
 
-
 jwt:
-    secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
-    lifetime: 30m
+  secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  lifetime: 30m
