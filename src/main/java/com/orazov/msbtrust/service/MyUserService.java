@@ -2,6 +2,7 @@ package com.orazov.msbtrust.service;
 
 import com.orazov.msbtrust.dto.RegisterRequest;
 import com.orazov.msbtrust.entity.MyUser;
+import com.orazov.msbtrust.entity.Role;
 import com.orazov.msbtrust.repository.MyUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,6 @@ public class MyUserService implements UserDetailsService {
         user.setRoles(List.of(roleService.getUserRole()));
         return myUserRepository.save(user);
     }
+
 }
 
