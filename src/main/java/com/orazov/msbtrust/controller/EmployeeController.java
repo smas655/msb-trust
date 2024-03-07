@@ -20,14 +20,12 @@ public class EmployeeController {
    private final EmployeeService employeeService;
 
     @GetMapping("/all")
-    @PreAuthorize("hasAuthority('ROLE_USER' && 'ROLE_ADMIN')")
     public ResponseEntity<List<Employee>> getAllEmployees(){
         List<Employee> employees = employeeService.findAllEmployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable ("id") Long id){
         Employee employee = employeeService.findEmployeeById(id);
         return new ResponseEntity<>(employee, HttpStatus.OK);
@@ -57,9 +55,4 @@ public class EmployeeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/new-user")
-    public String addUser(@RequestBody MyUser user){
-        employeeService.addUser(user);
-        return "User is saved";
-    }
 }
