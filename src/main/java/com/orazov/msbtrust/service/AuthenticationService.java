@@ -29,7 +29,7 @@ public class AuthenticationService {
         }
         UserDetails userDetails = userService.loadUserByUsername(authRequest.getUsername());
         String token = jwtTokenUtils.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtResponse("Новый токен: " + token));
+        return ResponseEntity.ok(new JwtResponse("New token: " + token));
     }
 
     public ResponseEntity<?> createNewUser(@RequestBody RegisterRequest request) {
