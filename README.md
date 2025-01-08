@@ -1,5 +1,5 @@
 Hello everyone!
-This is my pet project from my current job.
+This is my pet project from my previous job.
 Here I implemented authentication and authorization using the jwt token, as well as data about employees and projects.
 Here I used ORM Hibernate to define connections between entities, to connect between an employee and a project, as well as between a role and a user
 
